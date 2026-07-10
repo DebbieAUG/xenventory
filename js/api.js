@@ -1,5 +1,5 @@
 // Replace with your Apps Script Web App URL
-const API_URL = "https://script.google.com/macros/s/AKfycbywWMG0OjuMWAYdBB4K_zjlTCRTZj2rqaVmR4CmelfPLCPXEopBI0Nu6Pv_KlDsugs7/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxL5nCd5QrTlBQUMUqG4Q_cEImzcEP5n1mimqxaiQorB4uBMcNJH-uAvT3spmHIs0s3/exec";
 async function callAPI(payload) {
     try {
         const response = await fetch(API_URL, {
