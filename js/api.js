@@ -1,5 +1,5 @@
 // Replace with your Apps Script Web App URL
-const API_URL = "https://script.google.com/macros/s/AKfycbxL5nCd5QrTlBQUMUqG4Q_cEImzcEP5n1mimqxaiQorB4uBMcNJH-uAvT3spmHIs0s3/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzx4L7QQHDgMi9Dl400DdX_FHR6QDhugZ_QXsP3hGQZ3YVR2IA8T2xXwAFSin0Zuexr/exec";
 async function callAPI(payload) {
     try {
         const formData = new URLSearchParams();
