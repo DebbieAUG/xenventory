@@ -1,28 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>xenventory | Dashboard</title>
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
-  <body>
-    <header>
-      <h1>xenventory</h1>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="inventory.html">Inventory</a>
-        <a href="requests.html">Requests</a>
-        <a href="approvals.html">Approvals</a>
-      </nav>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Xenventory</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body class="bg-slate-100">
+
+    <!-- Header -->
+
+    <header class="bg-blue-600 text-white shadow">
+
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+            <div>
+
+                <h1 class="text-2xl font-bold">
+                    Xenventory
+                </h1>
+
+                <p class="text-blue-100 text-sm">
+                    Inventory Management System
+                </p>
+
+            </div>
+
+            <button
+                id="logoutBtn"
+                class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg">
+
+                Logout
+
+            </button>
+
+        </div>
+
     </header>
 
-    <main>
-      <h2>Dashboard</h2>
-      <p>Overview content will go here.</p>
+    <main class="max-w-7xl mx-auto p-6 space-y-8">
+
+        <!-- Dashboard Cards -->
+
+        <section class="grid md:grid-cols-3 gap-6">
+
+            <div class="bg-white rounded-xl shadow p-6">
+
+                <h2 class="text-gray-500">
+                    Total Items
+                </h2>
+
+                <h1
+                    id="totalItems"
+                    class="text-4xl font-bold mt-3">
+
+                    0
+
+                </h1>
+
+            </div>
+
+            <div class="bg-white rounded-xl shadow p-6">
+
+                <h2 class="text-gray-500">
+                    Available Stock
+                </h2>
+
+                <h1
+                    id="availableStock"
+                    class="text-4xl font-bold mt-3 text-green-600">
+
+                    0
+
+                </h1>
+
+            </div>
+
+            <div class="bg-white rounded-xl shadow p-6">
+
+                <h2 class="text-gray-500">
+                    Pending Requests
+                </h2>
+
+                <h1
+                    id="pendingRequests"
+                    class="text-4xl font-bold mt-3 text-orange-500">
+
+                    0
+
+                </h1>
+
+            </div>
+
+        </section>
+
+        <!-- Add Inventory -->
+
+        <section class="bg-white rounded-xl shadow p-6">
+
+            <h2 class="text-xl font-semibold mb-6">
+
+                Add Inventory
+
+            </h2>
+
+            <form id="inventoryForm">
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+
+                    <input
+                        id="itemName"
+                        type="text"
+                        placeholder="Item Name"
+                        class="border rounded-lg p-3">
+
+                    <input
+                        id="category"
+                        type="text"
+                        placeholder="Category"
+                        class="border rounded-lg p-3">
+
+                    <input
+                        id="quantity"
+                        type="number"
+                        placeholder="Quantity"
+                        class="border rounded-lg p-3">
+
+                    <input
+                        id="vendor"
+                        type="text"
+                        placeholder="Vendor"
+                        class="border rounded-lg p-3">
+
+                    <input
+                        id="purchaseDate"
+                        type="date"
+                        class="border rounded-lg p-3">
+
+                    <input
+                        id="purchasedFor"
+                        type="text"
+                        placeholder="Purchased For"
+                        class="border rounded-lg p-3">
+
+                    <input
+                        id="cost"
+                        type="number"
+                        placeholder="Cost Per Unit"
+                        class="border rounded-lg p-3">
+
+                    <input
+                        id="total"
+                        type="number"
+                        placeholder="Total"
+                        readonly
+                        class="border rounded-lg p-3 bg-gray-100">
+
+                </div>
+
+                <button
+                    class="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">
+
+                    Save Inventory
+
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- Inventory -->
+
+        <section class="bg-white rounded-xl shadow p-6">
+
+            <div class="flex justify-between items-center mb-5">
+
+                <h2 class="text-xl font-semibold">
+
+                    Inventory
+
+                </h2>
+
+                <input
+                    id="searchInventory"
+                    type="text"
+                    placeholder="Search..."
+                    class="border rounded-lg px-4 py-2">
+
+            </div>
+
+            <div class="overflow-auto">
+
+                <table class="min-w-full">
+
+                    <thead class="bg-slate-100">
+
+                        <tr>
+
+                            <th class="text-left p-3">Item</th>
+                            <th class="text-left p-3">Category</th>
+                            <th class="text-left p-3">Qty</th>
+                            <th class="text-left p-3">Vendor</th>
+                            <th class="text-left p-3">Purchased For</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="inventoryTable">
+
+                        <tr>
+
+                            <td class="p-3">No Data</td>
+
+                            <td colspan="4"></td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- Request Item -->
+
+        <section class="bg-white rounded-xl shadow p-6">
+
+            <h2 class="text-xl font-semibold mb-6">
+
+                Request Item
+
+            </h2>
+
+            <form id="requestForm">
+
+                <div class="grid md:grid-cols-3 gap-4">
+
+                    <input
+                        id="requestItem"
+                        type="text"
+                        placeholder="Item Name"
+                        class="border rounded-lg p-3">
+
+                    <input
+                        id="requestQty"
+                        type="number"
+                        placeholder="Quantity"
+                        class="border rounded-lg p-3">
+
+                    <input
+                        id="purpose"
+                        type="text"
+                        placeholder="Purpose"
+                        class="border rounded-lg p-3">
+
+                </div>
+
+                <button
+                    class="mt-6 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg">
+
+                    Submit Request
+
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- Pending Requests -->
+
+        <section class="bg-white rounded-xl shadow p-6">
+
+            <h2 class="text-xl font-semibold mb-5">
+
+                Pending Requests
+
+            </h2>
+
+            <div class="overflow-auto">
+
+                <table class="min-w-full">
+
+                    <thead class="bg-slate-100">
+
+                        <tr>
+
+                            <th class="text-left p-3">User</th>
+                            <th class="text-left p-3">Item</th>
+                            <th class="text-left p-3">Qty</th>
+                            <th class="text-left p-3">Purpose</th>
+                            <th class="text-left p-3">Status</th>
+                            <th class="text-left p-3">Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="requestTable">
+
+                        <tr>
+
+                            <td class="p-3">No Requests</td>
+
+                            <td colspan="5"></td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
     </main>
 
-    <script src="js/app.js"></script>
-  </body>
+    <script src="js/dashboard.js"></script>
+
+</body>
+
 </html>
