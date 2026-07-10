@@ -2,12 +2,11 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbxL5nCd5QrTlBQUMUqG4Q_cEImzcEP5n1mimqxaiQorB4uBMcNJH-uAvT3spmHIs0s3/exec";
 async function callAPI(payload) {
     try {
+        const formData = new URLSearchParams();
+        formData.append("data", JSON.stringify(payload));
         const response = await fetch(API_URL, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload)
+            body: formData
         });
         return await response.json();
     } catch (error) {
