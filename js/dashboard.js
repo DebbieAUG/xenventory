@@ -30,7 +30,7 @@ function configureRole(role) {
         document
             .querySelectorAll(".user-only")
             .forEach(el => el.classList.remove("hidden"));
-        document.getElementById("showAdd").add("hidden");
+        // document.getElementById("showAdd").add("hidden");
     }
 }
 async function loadDashboard() {
