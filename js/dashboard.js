@@ -10,8 +10,8 @@ async function init() {
     configureRole(role);
     await loadDashboard();
     await loadInventory();
-    // These will come later
-    // await loadPendingRequests();
+    await populateInventoryDropdown();
+    await loadPendingRequests();
     // await loadReturns();
 }
 function configureRole(role) {
