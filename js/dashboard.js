@@ -49,7 +49,6 @@ async function loadInventory(){
         0
     );
 }
-loadInventory();
 
 const modal = document.getElementById("addModal");
 const addBtn = document.getElementById("showAdd");
@@ -109,7 +108,11 @@ async function loadDashboard(){
     document.getElementById("cardApproved").innerText =
         dashboard.approved;
 }
-loadDashboard();
+
+window.onload = async () => {
+    await loadDashboard();
+    await loadInventory();
+};
 
 const btnInventory = document.getElementById("downloadInventory");
 
