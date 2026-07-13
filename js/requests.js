@@ -1,6 +1,16 @@
 document
 .getElementById("submitRequest")
 .onclick = submitNewRequest;
+
+async function loadPendingRequests() {
+    const requests = await getPendingRequests();
+    renderPendingRequests(requests);
+}
+async function loadMyRequests() {
+    const requests = await getUserRequests();
+    renderMyRequests(requests);
+}
+
 async function submitNewRequest() {
     const select =
         document.getElementById("requestItem");
