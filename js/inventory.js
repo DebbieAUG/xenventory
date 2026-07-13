@@ -88,20 +88,3 @@ function clearInventoryForm() {
     document.getElementById("cost").value = "";
 }
 
-async function populateInventoryDropdown() {
-    const inventory = await getInventory();
-    const select =
-        document.getElementById("requestItem");
-    if (!select) return;
-    select.innerHTML =
-        '<option value="">Select Item</option>';
-    inventory.forEach(item => {
-        select.innerHTML += `
-        <option
-            value="${item["Item ID"]}"
-            data-name="${item["Item Name"]}">
-            ${item["Item Name"]}
-        </option>
-        `;
-    });
-}
