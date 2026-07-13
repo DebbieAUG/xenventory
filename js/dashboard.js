@@ -12,7 +12,8 @@ async function init() {
     await loadInventory();
     await populateInventoryDropdown();
     await loadPendingRequests();
-    // await loadReturns();
+    await loadMyRequests();
+    await loadReturns();
 }
 function configureRole(role) {
     if (role === "Admin") {

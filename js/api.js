@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbxOq069pbeu0ObZIeHX99WE1cXzeKXLTObmvKRDzpN6O6ytL9B3taalOSUlqsOoOALw/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxYON_pYsEvABKAV5w4Ut77DoF2mMpkR6CM8IgZ5EtrqVt1CZq1f_rSuw1kXpu_ysjU/exec";
 async function login(username, password) {
     const response = await fetch(API_URL, {
         method: "POST",
@@ -150,4 +150,15 @@ async function downloadReturns() {
         returns.data,
         "Returns.csv"
     );
+}
+
+async function getUserRequests(){
+    const response = await fetch(API_URL,{
+        method:"POST",
+        body:JSON.stringify({
+            action:"getUserRequests",
+            user:localStorage.getItem("username")
+        })
+    });
+    return await response.json();
 }

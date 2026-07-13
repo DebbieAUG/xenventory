@@ -92,3 +92,63 @@ function renderPendingRequests(requests){
     html+="</tbody></table>";
     section.innerHTML=html;
 }
+
+async function loadMyRequests(){
+    const requests = await getUserRequests();
+    renderMyRequests(requests);
+}
+
+function renderMyRequests(requests){
+    const section =
+        document.getElementById("myRequestsSection");
+    if(!section) return;
+    let html = `
+    <table class="min-w-full">
+    <thead>
+    <tr class="bg-slate-200">
+    <th class="text-left p-3">Request ID</th>
+    <th>Item</th>
+    <th>Qty</th>
+    <th>Purpose</th>
+    <th>Status</th>
+    <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    `;
+    requests.forEach(r=>{
+        let badge = "";
+        switch(r.Status){
+            case "Pending":
+                badge = "bg-yellow-100 text-yellow-700";
+                break;
+            case "Approved":
+                badge = "bg-green-100 text-green-700";
+                break;
+            case "Rejected":
+                badge = "bg-red-100 text-red-700";
+                break;
+            case "Returned":
+                badge = "bg-blue-100 text-blue-700";
+                break;
+            default:
+                badge = "bg-gray-100 text-gray-700";
+        }
+        html += `
+        <tr class="border-b">
+            <td class="p-3">${r["Request ID"]}</td>
+            <td>${r["Item Name"]}</td>
+            <td>${r.Qty}</td>
+            <td>${r.Purpose}</td>
+            <td>
+                <span class="${badge} px-3 py-1 rounded-full text-sm">
+                    ${r.Status}
+                </span>
+            </td>
+            <td>${r.Date}</td>
+        </tr>
+        `;
+    });
+    html += "</tbody></table>";
+    section.innerHTML = html;
+}
