@@ -56,8 +56,6 @@ async function loadInventory(){
 }
 loadInventory();
 
-
-
 const modal = document.getElementById("addModal");
 const addBtn = document.getElementById("showAdd");
 const closeBtn = document.getElementById("closeModal");
@@ -104,3 +102,16 @@ function clearForm(){
     document.getElementById("remarks").value="";
     document.getElementById("cost").value="";
 }
+
+async function loadDashboard(){
+    const dashboard = await getDashboard();
+    document.getElementById("cardInventory").innerText =
+        dashboard.totalItems;
+    document.getElementById("cardAvailable").innerText =
+        dashboard.availableQty;
+    document.getElementById("cardPending").innerText =
+        dashboard.pending;
+    document.getElementById("cardApproved").innerText =
+        dashboard.approved;
+}
+loadDashboard();

@@ -92,3 +92,53 @@ async function getReturns(){
     });
     return await response.json();
 }
+
+async function getDashboard(){
+    const response = await fetch(API_URL,{
+        method:"POST",
+        body:JSON.stringify({
+            action:"getDashboard"
+        })
+    });
+    return await response.json();
+}
+
+async function exportSheet(sheet){
+    const response = await fetch(API_URL,{
+        method:"POST",
+        body:JSON.stringify({
+            action:"exportSheet",
+            sheet
+        })
+    });
+    return await response.json();
+}
+function downloadCSV(data, filename){
+    let csv = "";
+    data.forEach(row=>{
+        csv += row.join(",") + "\n";
+    });
+    const blob = new Blob([csv],{
+        type:"text/csv"
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.click();
+}
+const inventory = await exportSheet("Inventory");
+downloadCSV(
+    inventory.data,
+    "Inventory.csv"
+);
+const requests = await exportSheet("Requests");
+downloadCSV(
+    requests.data,
+    "Requests.csv"
+);
+const returns = await exportSheet("Returns");
+downloadCSV(
+    returns.data,
+    "Returns.csv"
+);
