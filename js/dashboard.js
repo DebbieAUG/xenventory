@@ -64,6 +64,12 @@ closeBtn.onclick = () => {
     modal.classList.remove("flex");
 }
 
+document.getElementById("closeModalSecondary").onclick = closeModal;
+function closeModal() {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+}
+
 document
 .getElementById("saveInventory")
 .onclick = async () => {
