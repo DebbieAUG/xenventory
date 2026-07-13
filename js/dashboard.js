@@ -51,6 +51,7 @@ async function loadInventory(){
     document.getElementById("cardInventory").innerText = 0;
     document.getElementById("cardAvailable").innerText = 0;
 }
+loadInventory();
 document
 .getElementById("showInventory")
 .onclick=loadInventory;
