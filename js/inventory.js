@@ -23,6 +23,21 @@ async function loadInventory() {
     const inventory = await getInventory();
     renderInventoryTable(inventory);
 }
+async function populateInventoryDropdown() {
+    const inventory = await getInventory();
+    const select = document.getElementById("requestItem");
+    if (!select) return;
+    select.innerHTML = '<option value="">Select Item</option>';
+    inventory.forEach(item => {
+        select.innerHTML += `
+            <option
+                value="${item["Item ID"]}"
+                data-name="${item["Item Name"]}">
+                ${item["Item Name"]}
+            </option>
+        `;
+    });
+}
 function renderInventoryTable(inventory) {
     let html = `
     <table class="min-w-full border-collapse">
