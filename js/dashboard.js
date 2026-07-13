@@ -7,9 +7,6 @@ if(role!=="Admin"){
     .style.display="none";
 }
 
-document
-.getElementById("showInventory")
-.onclick=loadInventory;
 async function loadInventory(){
     const inventory=await getInventory();
     let html = `
@@ -54,7 +51,9 @@ async function loadInventory(){
     document.getElementById("cardInventory").innerText = 0;
     document.getElementById("cardAvailable").innerText = 0;
 }
-loadInventory();
+document
+.getElementById("showInventory")
+.onclick=loadInventory;
 
 const modal = document.getElementById("addModal");
 const addBtn = document.getElementById("showAdd");
