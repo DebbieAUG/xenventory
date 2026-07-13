@@ -1,74 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Xenventory Dashboard</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-gray-100">
-<div class="p-6">
-    <div class="flex justify-between items-center">
-        <h1 class="text-3xl font-bold">
-            Xenventory Dashboard
-        </h1>
-        <button
-            id="logoutBtn"
-            class="bg-red-500 text-white px-4 py-2 rounded">
-            Logout
-        </button>
-    </div>
-    <div class="mt-8">
-        <button
-            id="showInventory"
-            class="bg-blue-600 text-white px-4 py-2 rounded">
-            Inventory
-        </button>
-        <button
-            id="showAdd"
-            class="bg-green-600 text-white px-4 py-2 rounded ml-2">
-            Add Item
-        </button>
-    </div>
-    <div
-        id="inventorySection"
-        class="mt-8">
-    </div>
-    <!-- Add Inventory Modal -->
-    <div id="addModal" class="fixed inset-0 bg-black/40 hidden items-center justify-center">
-        <div class="bg-white rounded-xl shadow-lg w-full max-w-2xl p-6">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold">
-                    Add Inventory
-                </h2>
-                <button id="closeModal" class="text-2xl">
-                    ×
-                </button>
-            </div>
-            <div class="grid grid-cols-2 gap-4">
-                <input id="itemName" placeholder="Item Name" class="border p-2 rounded">
-                <input id="category" placeholder="Category" class="border p-2 rounded">
-                <input id="qty" type="number" placeholder="Available Qty" class="border p-2 rounded">
-                <input id="customer" placeholder="Customer" class="border p-2 rounded">
-                <input id="purchaseDate" type="date" class="border p-2 rounded">
-                <input id="cost" type="number" placeholder="Cost Per Unit" class="border p-2 rounded">
-                <textarea
-                    id="remarks"
-                    placeholder="Remarks"
-                    class="border p-2 rounded col-span-2"></textarea>
-            </div>
-            <div class="mt-6 text-right">
+<body class="bg-slate-100">
+    <!-- Header -->
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-blue-600">
+                Xenventory
+            </h1>
+            <div class="flex items-center gap-5">
+                <span>
+                    Welcome,
+                    <strong id="loggedUser"></strong>
+                </span>
                 <button
-                    id="saveInventory"
-                    class="bg-green-600 text-white px-5 py-2 rounded">
-                    Save Item
+                    id="logoutBtn"
+                    class="bg-red-500 text-white px-4 py-2 rounded">
+                    Logout
                 </button>
             </div>
         </div>
-    </div>
-</div>
-<script src="js/auth.js"></script>
-<script src="js/dashboard.js"></script>
+    </header>
+    <main class="max-w-7xl mx-auto p-6">
+        <!-- Dashboard -->
+        <h2 class="text-2xl font-bold mb-6">
+            Dashboard
+        </h2>
+        <!-- Summary Cards -->
+        <div class="grid md:grid-cols-4 gap-6 mb-10">
+            <div class="bg-white rounded-xl shadow p-5">
+                <h3 class="text-gray-500">
+                    Inventory Items
+                </h3>
+                <p
+                    id="cardInventory"
+                    class="text-4xl font-bold mt-2">
+                    0
+                </p>
+            </div>
+            <div class="bg-white rounded-xl shadow p-5">
+                <h3 class="text-gray-500">
+                    Available Qty
+                </h3>
+                <p
+                    id="cardAvailable"
+                    class="text-4xl font-bold mt-2">
+                    0
+                </p>
+            </div>
+            <div class="bg-white rounded-xl shadow p-5">
+                <h3 class="text-gray-500">
+                    Pending Requests
+                </h3>
+                <p
+                    id="cardPending"
+                    class="text-4xl font-bold mt-2">
+                    0
+                </p>
+            </div>
+            <div class="bg-white rounded-xl shadow p-5">
+                <h3 class="text-gray-500">
+                    Approved Requests
+                </h3>
+                <p
+                    id="cardApproved"
+                    class="text-4xl font-bold mt-2">
+                    0
+                </p>
+            </div>
+        </div>
+        <!-- Inventory -->
+        <div class="bg-white rounded-xl shadow">
+            <div class="flex justify-between items-center border-b p-5">
+                <h2 class="text-xl font-bold">
+                    Inventory
+                </h2>
+                <button
+                    id="showAdd"
+                    class="bg-blue-600 text-white px-4 py-2 rounded">
+                    + Add Item
+                </button>
+            </div>
+            <div
+                id="inventorySection"
+                class="overflow-x-auto p-5">
+            </div>
+        </div>
+    </main>
+    <!-- Add Inventory Modal -->
+    <!-- Keep the modal you already have -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
 </body>
-</html>
