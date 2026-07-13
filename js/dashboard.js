@@ -115,3 +115,13 @@ async function loadDashboard(){
         dashboard.approved;
 }
 loadDashboard();
+
+document
+.getElementById("downloadInventory")
+.onclick = downloadInventory;
+document
+.getElementById("downloadRequests")
+.onclick = downloadRequests;
+document
+.getElementById("downloadReturns")
+.onclick = downloadReturns;

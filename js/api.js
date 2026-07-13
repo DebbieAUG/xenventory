@@ -127,18 +127,27 @@ function downloadCSV(data, filename){
     a.download = filename;
     a.click();
 }
-const inventory = await exportSheet("Inventory");
-downloadCSV(
-    inventory.data,
-    "Inventory.csv"
-);
-const requests = await exportSheet("Requests");
-downloadCSV(
-    requests.data,
-    "Requests.csv"
-);
-const returns = await exportSheet("Returns");
-downloadCSV(
-    returns.data,
-    "Returns.csv"
-);
+
+async function downloadInventory() {
+    const inventory = await exportSheet("Inventory");
+    downloadCSV(
+        inventory.data,
+        "Inventory.csv"
+    );
+}
+
+async function downloadRequests() {
+    const requests = await exportSheet("Requests");
+    downloadCSV(
+        requests.data,
+        "Requests.csv"
+    );
+}
+
+async function downloadReturns() {
+    const returns = await exportSheet("Returns");
+    downloadCSV(
+        returns.data,
+        "Returns.csv"
+    );
+}
