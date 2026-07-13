@@ -6,6 +6,7 @@ if (loginBtn) {
         const password =
             document.getElementById("password").value;
         const result = await login(username, password);
+        console.log(result);
         if (result.success) {
             localStorage.setItem(
                 "username",
