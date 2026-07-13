@@ -48,13 +48,8 @@ async function loadInventory(){
         (sum, item) => sum + Number(item["Available Qty"]),
         0
     );
-    document.getElementById("cardInventory").innerText = 0;
-    document.getElementById("cardAvailable").innerText = 0;
 }
 loadInventory();
-document
-.getElementById("showInventory")
-.onclick=loadInventory;
 
 const modal = document.getElementById("addModal");
 const addBtn = document.getElementById("showAdd");
@@ -116,12 +111,18 @@ async function loadDashboard(){
 }
 loadDashboard();
 
-document
-.getElementById("downloadInventory")
-.onclick = downloadInventory;
-document
-.getElementById("downloadRequests")
-.onclick = downloadRequests;
-document
-.getElementById("downloadReturns")
-.onclick = downloadReturns;
+const btnInventory = document.getElementById("downloadInventory");
+
+if (btnInventory) {
+    btnInventory.onclick = downloadInventory;
+}
+const btnRequests = document.getElementById("downloadRequests");
+
+if (btnRequests) {
+    btnRequests.onclick = downloadRequests;
+}
+const btnReturns = document.getElementById("downloadReturns");
+
+if (btnReturns) {
+    btnReturns.onclick = downloadReturns;
+}
