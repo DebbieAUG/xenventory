@@ -10,3 +10,23 @@ async function login(username, password) {
     });
     return await response.json();
 }
+
+async function getInventory(){
+    const response=await fetch(API_URL,{
+        method:"POST",
+        body:JSON.stringify({
+            action:"getInventory"
+        })
+    });
+    return await response.json();
+}
+async function addInventory(item){
+    const response=await fetch(API_URL,{
+        method:"POST",
+        body:JSON.stringify({
+            action:"addInventory",
+            ...item
+        })
+    });
+    return await response.json();
+}
