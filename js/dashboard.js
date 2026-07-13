@@ -1,2 +1,4 @@
 document.getElementById("loggedUser").innerText =
-localStorage.getItem("username");
+    localStorage.getItem("username");
+
+console.log("Role:", localStorage.getItem("role"));
