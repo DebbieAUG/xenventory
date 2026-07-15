@@ -126,10 +126,12 @@ async function saveInventory() {
         return;
     }
     if(editingItemId){
+        console.log("Updating:", editingItemId);
         item.itemId = editingItemId;
         await updateInventory(item);
     }
     else{
+        console.log("Adding new item");
         await addInventory(item);
     }
     clearInventoryForm();
