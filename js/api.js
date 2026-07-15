@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbxYON_pYsEvABKAV5w4Ut77DoF2mMpkR6CM8IgZ5EtrqVt1CZq1f_rSuw1kXpu_ysjU/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbx17rdzSXVvZ4dKlVBdv27-gfuU9tYmyocrpIBqiI3I_apN3pNhIvpZXP54h28bprhP/exec";
 async function login(username, password) {
     const response = await fetch(API_URL, {
         method: "POST",
