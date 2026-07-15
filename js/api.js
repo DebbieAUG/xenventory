@@ -173,3 +173,14 @@ async function getApprovedRequests(){
     });
     return await response.json();
 }
+
+async function updateInventory(item){
+    const response = await fetch(API_URL,{
+        method:"POST",
+        body:JSON.stringify({
+            action:"updateInventory",
+            ...item
+        })
+    });
+    return await response.json();
+}

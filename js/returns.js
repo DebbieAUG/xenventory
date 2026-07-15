@@ -18,7 +18,7 @@ document
 
 async function loadApprovedRequests(){
     const requests = await getApprovedRequests();
-    console.log("Approved Requests:", requests);
+    // console.log("Approved Requests:", requests);
     populateReturnDropdown(requests);
 }
 

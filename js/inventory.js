@@ -1,3 +1,5 @@
+let editingItemId = null;
+
 const modal = document.getElementById("addModal");
 const addBtn = document.getElementById("showAdd");
 const closeBtn = document.getElementById("closeModal");
@@ -18,6 +20,9 @@ function openAddModal() {
 function closeAddModal() {
     modal.classList.add("hidden");
     modal.classList.remove("flex");
+    clearInventoryForm();
+    editingItemId = null;
+    document.getElementById("saveInventory").innerText = "Save Item";
 }
 async function loadInventory() {
     const inventory = await getInventory();
@@ -51,6 +56,7 @@ function renderInventoryTable(inventory) {
                 <th class="text-left">Purchase Date</th>
                 <th class="text-left">Cost</th>
                 <th class="text-left">Total</th>
+                <th class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -66,12 +72,44 @@ function renderInventoryTable(inventory) {
             <td>${item["Purchase Date"]}</td>
             <td>₹${item["Cost Per Unit"]}</td>
             <td>₹${item["Total Cost"]}</td>
+            <td class="text-center">
+                <button
+                    onclick="editInventory('${item["Item ID"]}')"
+                    class="bg-amber-500 hover:bg-amber-600 text-white px-3 py-1 rounded">
+                    Edit
+                </button>
+            </td>
         </tr>
         `;
     });
     html += "</tbody></table>";
     document.getElementById("inventorySection").innerHTML = html;
 }
+
+async function editInventory(itemId){
+    const inventory = await getInventory();
+    const item = inventory.find(i => i["Item ID"] == itemId);
+    if(!item) return;
+    editingItemId = itemId;
+    document.getElementById("itemName").value =
+        item["Item Name"];
+    document.getElementById("category").value =
+        item["Category"];
+    document.getElementById("qty").value =
+        item["Available Qty"];
+    document.getElementById("customer").value =
+        item["Customer"];
+    document.getElementById("purchaseDate").value =
+        item["Purchase Date"];
+    document.getElementById("remarks").value =
+        item["Remarks"];
+    document.getElementById("cost").value =
+        item["Cost Per Unit"];
+    document.getElementById("saveInventory").innerText =
+        "Update Item";
+    openAddModal();
+}
+
 document.getElementById("saveInventory").onclick = saveInventory;
 async function saveInventory() {
     const item = {
@@ -87,8 +125,16 @@ async function saveInventory() {
         alert("Item Name is required");
         return;
     }
-    await addInventory(item);
+    if(editingItemId){
+        item.itemId = editingItemId;
+        await updateInventory(item);
+    }
+    else{
+        await addInventory(item);
+    }
     clearInventoryForm();
+    editingItemId = null;
+    document.getElementById("saveInventory").innerText = "Save Item";
     closeAddModal();
     await loadInventory();
     await loadDashboard();
@@ -101,5 +147,5 @@ function clearInventoryForm() {
     document.getElementById("purchaseDate").value = "";
     document.getElementById("remarks").value = "";
     document.getElementById("cost").value = "";
+    editingItemId = null;
 }
-
