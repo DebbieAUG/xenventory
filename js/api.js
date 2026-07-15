@@ -162,3 +162,14 @@ async function getUserRequests(){
     });
     return await response.json();
 }
+
+async function getApprovedRequests(){
+    const response = await fetch(API_URL,{
+        method:"POST",
+        body:JSON.stringify({
+            action:"getApprovedRequests",
+            user:localStorage.getItem("username")
+        })
+    });
+    return await response.json();
+}

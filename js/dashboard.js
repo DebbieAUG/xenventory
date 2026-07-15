@@ -14,6 +14,8 @@ async function init() {
     await loadPendingRequests();
     await loadMyRequests();
     await loadReturns();
+    await loadApprovedRequests();
+    await loadReturns();
 }
 function configureRole(role) {
     if (role === "Admin") {

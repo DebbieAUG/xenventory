@@ -99,61 +99,38 @@
         </div>
     
         <!-- Request Item -->
-        <div class="user-only bg-white rounded-xl shadow-sm mb-8">
+        <div class="bg-white rounded-xl shadow-sm mb-8">
             <div class="p-6 border-b">
                 <h2 class="text-xl font-semibold">
-                    Request Item
+                    Returns
                 </h2>
             </div>
             <div class="p-6">
-                <div class="grid md:grid-cols-5 gap-4">
+                <div class="grid md:grid-cols-4 gap-4">
                     <select
-                        id="requestItem"
+                        id="returnRequest"
                         class="border rounded-lg px-4 py-3">
-                        <option value="">Select Item</option>
+                        <option value="">Select Approved Request</option>
                     </select>
                     <input
-                        id="requestQty"
+                        id="returnQty"
                         type="number"
                         placeholder="Quantity"
                         class="border rounded-lg px-4 py-3">
                     <input
-                        id="requestPurpose"
+                        id="returnComment"
                         type="text"
-                        placeholder="Purpose"
-                        class="border rounded-lg px-4 py-3">
-                    <input
-                        id="requestCustomer"
-                        type="text"
-                        placeholder="Customer"
+                        placeholder="Comment"
                         class="border rounded-lg px-4 py-3">
                     <button
-                        id="submitRequest"
+                        id="submitReturn"
                         class="bg-blue-600 hover:bg-blue-700 text-white rounded-lg">
-                        Submit
+                        Return Item
                     </button>
                 </div>
             </div>
-        </div>
-        <div class="admin-only bg-white rounded-xl shadow-sm mb-8">
-            <div class="p-6 border-b">
-                <h2 class="text-xl font-semibold">
-                    Pending Requests
-                </h2>
-            </div>
             <div
-                id="pendingRequestsSection"
-                class="overflow-x-auto p-6">
-            </div>
-        </div>
-        <div class="user-only bg-white rounded-xl shadow-sm mb-8">
-            <div class="p-6 border-b">
-                <h2 class="text-xl font-semibold">
-                    My Requests
-                </h2>
-            </div>
-            <div
-                id="myRequestsSection"
+                id="returnsSection"
                 class="overflow-x-auto p-6">
             </div>
         </div>
